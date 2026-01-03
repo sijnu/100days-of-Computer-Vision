@@ -1,0 +1,30 @@
+import cv2
+
+# Step 1: Open the camera (0 = default webcam)
+camera = cv2.VideoCapture(0)
+
+# Step 2: Check if camera opened successfully
+if not camera.isOpened():
+    print("Error: Camera not accessible")
+    exit()
+
+# Step 3: Capture one frame from the camera
+ret, frame = camera.read()
+
+# ret = True if frame is captured successfully
+if ret:
+    # Step 4: Display the captured image
+    cv2.imshow("Captured Image", frame)
+
+    # Step 5: Save the image to local directory
+    cv2.imwrite("cat.jpeg", frame)
+    print("Image saved as captured_image.jpg")
+
+    # Wait for a key press
+    cv2.waitKey(0)
+else:
+    print("Failed to capture image")
+
+# Step 6: Release the camera and close windows
+camera.release()
+cv2.destroyAllWindows()
